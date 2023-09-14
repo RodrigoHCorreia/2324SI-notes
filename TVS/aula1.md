@@ -16,15 +16,14 @@
 - Sessão de feedback #2
 - Teste 2
 
-## Virtual Machines:
+## Virtual Machines
 
 - Criam um ambiente de execução para um software
 
-- VMWare, Virtual Box, Parallels, ... (Virtual Machine Monitors/Hipervisores) 
+- VMWare, Virtual Box, Parallels, ... (Virtual Machine Monitors/Hipervisores)
   - Criam e gerem máquinas virtuais "de sistema"
-- JVM (Java Virtual Machine), .NET Runtime, Node.js, ... 
+- JVM (Java Virtual Machine), .NET Runtime, Node.js, ...
   - Ambiente Virtual de Execução - Virtual Execution Environment (VEE)
-
 **ISA - Instruction Set Architecture**
 
 |  | System | Process |
@@ -35,6 +34,7 @@
 Também com o mesmo ISA entre o System e o Process, encontramos os **contentores**.
 
 ## O que é um processo
+>
 >Reminder: Thread é um fio de execução
 
 - O seu objetivo **nos anos 80** era criar uma entidade executiva para permitir correr várias coisas em simultâneo

@@ -42,3 +42,6 @@
 - **Contentor de injeção de dependências** (Sprint Context) 
   - Cria instâncias de objetos pela ordem certas passando as dependências que são necessárias
 
+- Inversão de controlo é uma tecnica de desenho.
+
+- Injeção de dependencias é uma ação, de passar a dependência a quem precisa.
