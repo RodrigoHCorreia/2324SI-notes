@@ -1,40 +1,43 @@
-## When to use DTOs, Input/OutputModels, DAOs and Domain Models
+# When to use DTOs, Input/OutputModels, DAOs and Domain Models
 
-### Input/Output Models
+## Input/Output Models
 
 - Utilizado pelos **controllers**, pelo facto de terem uma estrutura ligada diretamente aos pedidos e respostas da API.
 - Input Models para os pedidos
 - Output Models para as respostas
 
-### DTOs: Data Transfer Objects
+## DTOs: Data Transfer Objects
 
 - Utilizados para enviar objetos entre camadas da aplicação, por exemplo, entre o controller e o service.
 
-### DAOs: Data Access Objects
+## DAOs: Data Access Objects
 
-- Utilizados para aceder à base de dados, por exemplo, para fazer queries nos repositórios.
 - Utilizado para guardar a interface abstrata de algum tipo na base de dados.
 - Usamos para fazer testes com mocking.
 
-### Domain Models
+## Domain Models
 
 - Utilizados pelos **services** e às vezes pelos **repositórios**.
 - Representam os objetos do **domínio da aplicação**, com as suas regras de negócio.
 
-### How do they interact?
+## How do they interact?
 
-#### Controller
+### Controller
 
 - Aceitam input na forma de **Input models**.
 - Podem ransformam este input em **DTOs** para passar para os **Services**.
 - Recebem **DTOs** como output dos **Services** e convertem-nos em **Output models** para a resposta.
 
-#### Service
+### Service
 
 - Aceitam e retornam **DTOs** quando comunicam com os **Controllers**.
 - Usam **Domain Models** para encapsular a lógica de negócio.
 - Podem converter entre **Domain Models** e **DTOs** quando interagem com os **Repositories**.
 
-#### Repository
+### Repository
 
 - Trabalham com **Domain Models**.
+
+#### Dúvidas
+
+- O professor referiu que o **domain** podia ser utilizado por todos os componentes, mas no modelo mental que tenho apenas o **service** e o **repository** é que o utilizam. O **controller** apenas utiliza **DTOs** e **Input/Output models**.
