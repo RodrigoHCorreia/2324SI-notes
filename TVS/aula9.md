@@ -32,7 +32,6 @@ backing storage é um elemento em disco onde ficam os dados quando retiramos uma
 para sitios como bss, entre outros, vem sempre o swap file
 em código e constantes, é sempre o ficheiro de onde vieram
 
-
 Zero page - página na memória física que está toda com 0s.
 
 ro CoW - alocamos a apontar para a zero page, e quando escrevemos nessa página, ai é que vai ser alocada a página na memória física, vai ser feita a escrita ai e o backing file aqui passa a ser o paging file.

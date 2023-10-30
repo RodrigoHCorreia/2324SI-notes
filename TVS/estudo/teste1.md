@@ -17,6 +17,9 @@ output2.txt
 
 ### 1.b
 
+fork para correr o ex1 com os parametros 18
+pipe do STDOUT do ex1 para o pipe, de seguida outro fork para 
+
 cria pipe
 
 ## 2.
@@ -46,4 +49,28 @@ Ao chamar a função func em 4 processos distintos, iremos ler do .data, Como es
 
 ## 4.
 
-Exceções são interrupções do processador, e sempre que estamos a lidar com exceções, temos de estar 
+Exceções são interrupções do processador, e sempre que estamos a lidar com exceções, temos de estar em modo priveligiado.
+Exemplo de um Erro: Um processo tenta aceder a um processo não permitido (Fora da gama permitida).
+Exemplo de um não erro: Page fault. Um processo tenta aceder a uma página não mapeada o que causa uma page fault exception. No entanto esta exceção é utilizada para implementar o paging, pelo que não se trata de um erro.
+
+## 5
+
+### 5.a
+
+O backing storage de uma página pertencente ao mapeamento da secção de código de um ficheiro executável é o próprio ficheiro executável.
+
+### 5.b
+
+Se a página foi modificada, a mesma irá encontrar-se na swap partition.
+
+### 5.c
+
+Swap partition.
+
+### 5.d
+
+Ficheiro.
+
+### 5.e
+
+Zero page.
