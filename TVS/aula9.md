@@ -1,38 +1,38 @@
-### Bits relevantes das tabelas de paginas
+# Aula 9 
 
-**P** - diz se é valido ou n 
-**R/W** - diz se é read only ou read write
-**U/S** - diz se pode ser usado pelo user
-**nx** - se podemos fazer fetch de instruções
+**Resident Set** 
 
-**A** - Accessed, são postos a 1 pelo próprio processador quando aquela entrada é usada com sucesso numa tradução.
+- RAM ocupada
+- Subconjunto do espaço de endereçamento que efetivamente está mapeado para memória
 
-**D** - Dirty, são posto a 1 pelo próprio processador, se o acesso foi de escrita.
+**Working Set**
 
-Estes valores voltam a ser postos a 0 pelo sistema operativo.
+- Endereços de memória necessários que serão usados num determinado tempo
 
-Cria-se um array dentro da memória física com o mesmo número de entradas que as entradas da memória física, de movo a representá-la.
-O que cada entrada do array tem é informação sobre o que se passa na memória, sendo ainda possível ligar um conjunto de entradas em lista, fazendo ligações entre elas.
+**Nota:** Somar o resident set de diferentes processos que possam ter páginas de endereçamento partilhadas não irá dar efetivamente o valor que as mesmas ocupam em memória.
 
-**Active list** - aprox. ao working set, ou seja a lista dos blocos que têm sido mais usados recentemente.
-**Inactive list** - páginas que não têm sido usadas recentemente, mas que já foram usadas.
+**Pss** - dá-nos um número mais apróximado da contribuição que cada processo tem para a total RAM ocupada.
 
-Conjunto da lista ativa e inativa é o **resident set**.
-**Available list** - páginas que não estão a ser usadas.
+Se tiver um bloco de memória física com dados que já n esteja a ser usada e queiramos libertar, guardamos o conteudo do bloco na **swap partition** no disco, e libertamos aquela gama de endereços, se mais tarde houver um acesso aquela gama de endereços vai ocorrer um page fault, e vai ser preciso ir ao disco buscar os dados para os trazer novamente para a RAM.
 
-Cada página da lista tem um bit R.
+O nome da técnica de guardar dados secundários noutro espaço sem ser a RAM, onde estão os swap partitions designa-se de memória virtual
 
-O kernel tem um código que vai percorrer as listas, de baixo para cima, à procura de páginas que não estão a ser usadas para as colocar na lista de páginas disponíveis.
-Isto é feito indo às Page Table Entries, consultando os bits de Accessed e Dirty, e se estes estiverem a ser usados, metem o bit R da página a 1, e os bits A e D da PTE a 0.
+**O QUE FAZ APARECER O ESPAÇO DE ENDEREÇAMENTO VIRTUAL:**
 
-Como isto é um algoritmo demoroso, o kernel por omissão só percorre 1/6 da lista inativa, este algoritmo é corrido sempre que os valores esperados para cada página não estão a ser cumpridos.
+- Ele nasce do **ficheiro executável**, de seguida vem das **bibliotecas dinâmicas** que podem ser carregadas, Temos ainda de ter **pelo menos um Stack**, e um **Heap**. A execução do programa pode ainda dar origem a **ficheiros mapeados em memória**.
 
-Por normal a lista inativa é maior que a lista ativa.
+**Backing storage:**
 
-Se o algoritmo fica com dificuldades em libertar a lista em causa, o kernel aumenta o número de páginas que o algoritmo percorre, procurando libertar mais páginas.
+- Zona de memória secundária que armazena dados de uma página virtual quando esta não está mapeada para RAM.
+- Responde pelos dados quando ocorre um page fault por falta de mapeamento.
 
-Quando o algoritmo vai percorrer a lista inativa e encontra duas vezes consecutivas um bit a 0, envia a página para a lista de páginas disponíveis, se encontra duas vezes consecutivas um bit a 1, a mesma transita para o topo da lista ativa, com o bit R a 0.
+backing storage é um elemento em disco onde ficam os dados quando retiramos uma página física de memória
+**ou a mesma está clean e o backing storage é o sítio em disco original**
+**ou está dirty e o backing storage passa a ser o swap file**
+para sitios como bss, entre outros, vem sempre o swap file
+em código e constantes, é sempre o ficheiro de onde vieram
 
-Se a lista de páginas ativas estiver com capacidade superior ao esperado, o algoritmo começa a percorrer a lista ativa, procurando transitar páginas para o topo da lista inativa, com o bit a 1.
 
-Páginas novas vão para o topo da lista inativa, porque existe a probabilidade das mesmas só seres preciso uma vez.
+Zero page - página na memória física que está toda com 0s.
+
+ro CoW - alocamos a apontar para a zero page, e quando escrevemos nessa página, ai é que vai ser alocada a página na memória física, vai ser feita a escrita ai e o backing file aqui passa a ser o paging file.
