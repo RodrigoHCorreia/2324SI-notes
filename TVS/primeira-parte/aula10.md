@@ -1,6 +1,6 @@
-### Bits relevantes das tabelas de paginas
+# Bits relevantes das tabelas de paginas
 
-**P** - diz se é valido ou n 
+**P** - diz se é valido ou n
 **R/W** - diz se é read only ou read write
 **U/S** - diz se pode ser usado pelo user
 **nx** - se podemos fazer fetch de instruções

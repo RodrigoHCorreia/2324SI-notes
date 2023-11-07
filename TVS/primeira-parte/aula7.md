@@ -73,9 +73,10 @@ msg: ascii "Hello, world!\n" # we do this here and not in the data section becau
 ## IA-32
 
 **Virtual Address:**
-32 bits
+
+- 32 bits
   - 10 bits PDI (page directory index)
   - 10 bits PTI (page table index)
-12 bits offset
+- 12 bits offset
 
 Every process has one Page directory table, and this page directory table has 1024 entries, and each entry points to a page table.

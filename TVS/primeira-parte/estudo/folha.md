@@ -4,7 +4,7 @@ range de bits e o que significam
 
 bits relevantes das tabelas
 
-file descriptor table   
+file descriptor table
 
 ## Redirection
 
@@ -35,14 +35,14 @@ getpid - get process id
 geppid - get parent pid
 wait function
 
-exec family of functions 
+exec family of functions
 exec is a sys call function that replaces the current process with a new one
 execlp - exec with a list of arguments
 execvp - exec with a vector of arguments
 execve - exec with a vector of arguments and environment variables
 file permissions
 open and the flags
-read and write 
+read and write
 pipe and their functions
 kill process
 root directories
@@ -52,4 +52,3 @@ system calls
 process memory consumption
 
 segmentation fault and exceptions.
-

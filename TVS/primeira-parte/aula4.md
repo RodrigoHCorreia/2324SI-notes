@@ -32,8 +32,4 @@ int main() {
 }
 ```
 
->  $? - indica o status code do último comando executado
-
-## Sinais
-
-- 
+> $? - indica o status code do último comando executado

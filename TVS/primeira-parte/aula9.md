@@ -1,11 +1,11 @@
-# Aula 9 
+# Aula 9
 
-**Resident Set** 
+**Resident Set:**
 
 - RAM ocupada
 - Subconjunto do espaço de endereçamento que efetivamente está mapeado para memória
 
-**Working Set**
+**Working Set:**
 
 - Endereços de memória necessários que serão usados num determinado tempo
 
@@ -34,4 +34,4 @@ em código e constantes, é sempre o ficheiro de onde vieram
 
 Zero page - página na memória física que está toda com 0s.
 
-ro CoW - alocamos a apontar para a zero page, e quando escrevemos nessa página, ai é que vai ser alocada a página na memória física, vai ser feita a escrita ai e o backing file aqui passa a ser o paging file.
+ro CoW - alocamos a apontar para a zero page, e quando escrevemos nessa página, ai é que vai ser alocada a página na memória física, vai ser feita a escrita ai e o backing file aqui passa a ser o swap partition.

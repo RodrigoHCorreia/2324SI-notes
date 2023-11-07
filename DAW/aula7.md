@@ -1,2 +1,2 @@
-# Hypermedia
+# Hypermedia / HTML
 
