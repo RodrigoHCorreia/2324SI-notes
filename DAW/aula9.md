@@ -1,0 +1,1 @@
+# Typescript / React - não vim porque estava doente
