@@ -74,5 +74,5 @@ To make a script executable we use chmod +x /path/to/file
 
 ## Reload vs Restart
 
-**Reload**d doesn't restart the service, it just reloads the unit file with the new configuration. 
+**Reload** doesn't restart the service, it just reloads the unit file with the new configuration. 
 **Restart** will shut down the service and start it again.
