@@ -52,7 +52,7 @@ A compressão é opcional.
 
 ## Handshake Protocol
 
-- Responsável por 
+- Responsável por
   - Negociar os parâmetros de operação
   - Autenticação dos endpoints
   - Estabelecimento de chave segura
@@ -78,13 +78,36 @@ A compressão é opcional.
 
 ![RSA Handshake](image-2.png)
 
+- Alteração de mensagens de handshake é detetado com a mensagem `Finished`
+  - A mensagem Finished garante que ambos os endpoints recebem a mesma mensagem
+- Repetição de mensagens de handshake
+  - `ClientHello` e `ServerHello` contêm valores aleatórios, diferentes para cada handshake
+  - Implica que a mensagem `Finished` é diferente para cada handshake
+
 ### Perfect forward secrecy
 
 - A troca de chaves com RSA implica que o browser usa a chave pública do servidor para cifrar o pre master secret.
   - O servidor decifra o pre master secret usando a chave privada.
 - Este processo é seguro e garante confidencialidade do pre master secret
-- O que acontece se a chave privada for comprometida?
-  - O pre master secret dos handshakes seguintes e dos anteriores (guardados pelo atancante) podem ser decifrados
+- **O que acontece se a chave privada for comprometida?**
+  - O pre master secret dos handshakes seguintes e dos anteriores (guardados pelo atancante) podem ser decifrados, violando a propriedade **perfect forward secrecy**.
   - Perfect forward secrecy é a propriedade do handshake que garante que, se a chave privada for comprometida, não é possível decifrar master secret anteriores (e consequentemente não é possível decifrar mensagens do record protocol)
 
-## Master Secret 
+## Ataques a autoridades de certificação
+
+- A validação do certificado do servidor depende de uma raiz de confiança
+- As raízes de confiança são certificados emitidos por autoridades de certificação
+
+## Sockets
+
+- SSLSocketFactory e SSLServerSocketFactory
+  - Obtenção de cipher suites suportados por omissão
+  - Criação de instâncias de sockets
+- SSLSocket e SSLServerSocket
+  - Inicia o handshake e recebe notificações da sua conslusão
+  - Define os protocolos habilitados e cipher suites habilitados
+  - Aceita/requisita autenticação do cliente
+  - Obtém a sessão que foi negociada
+- SSLSession
+  - Obtém o cipher suite negociado
+  - Obtém a identidade do par autenticada e a cadeia de certificados

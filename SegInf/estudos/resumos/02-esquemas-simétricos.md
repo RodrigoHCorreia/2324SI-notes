@@ -1,4 +1,15 @@
-## 1. Esquemas Simétricos:
+# Esquemas Simétricos
+
+**Mecanismos criptográficos:**
+
+- **Primitivas** - operações matemáticas, usadas como blocos construtores na realização de esquemas; a sua caracterização depende dos problemas matemáticos que sustentam a sua utilização criptográfica.
+  - ex. DES, RSA
+
+- **Esquemas** - combinação de primitivas e métodos adicionais para a realização de tarefas criptográficas como a cifra e a assinatura digital.
+  - ex. DES-CBC-PKCS5Padding; RSA-OAEP-MGF1-SHA1
+
+- **Protocolos** - sequência de operações, a realizar por duas ou mais entidades, envolvendo esquemas e primitivas, com o propósito de doar uma aplicação com características seguras.
+  - ex. TLS com TLS_RSA_WITH_DES_CBC_SHA
 
 **Características Gerais:**
 
@@ -12,9 +23,9 @@
 - Em sistemas onde a velocidade é crucial, como na cifragem de grandes volumes de dados.
 - Em sistemas onde as duas partes podem compartilhar uma chave secreta de forma segura.
 
-### Cifra simétrica
+## Cifra simétrica
 
-**Algoritmos (G,E,D)**
+**Algoritmos (G,E,D):**
 
 - **G** - função (probabiliística) de geração de chaves
   - **G: -> Keys(1 Chave do conjunto possível de chaves)**
@@ -64,7 +75,7 @@
 
 ### MAC - Message Authentication Code
 
-**Algoritmos (G,T,V)**
+**Algoritmos (G,T,V):**
 
 - **G** - função (probabiliística) de geração de chaves
   - **G: -> Keys(1 Chave do conjunto possível de chaves)**
@@ -72,6 +83,13 @@
   - T: Keys -> {0,1}* -> **Tags**
 - **V** - função (determinística) de verificação de marcas
   - V: Keys -> (Tags x {0,1}*) -> {true, false}
+
+**Propriedades de segurança:**
+
+- Sem o conhecimento de **k**, é computacionalmente infazível:
+  - falsificação seletiva - dado **m**, encontrar **t** tal que **V(k, (t,m)) = true**
+  - falsificação existencial - encontrar o par **(m,t)** tal que **V(k, (t,m)) = true**
+
 
 **Cifra autenticada:**
 
@@ -81,14 +99,14 @@
   - **Encrypt-then-MAC**
     - A mensagem é cifrada e depois autenticada
     - A marca indica se houve alteração ou não do criptograma
-    - E(k1)(M) || T(k2)(E(k1)(M))
+    - **E(k1)(M) || T(k2)(E(k1)(M))**
   - **MAC-then-Encrypt**
     - A mensagem é autenticada e depois cifrada
     - A marca é gerada sobre a mensagem, e é posteriormente tudo cifrado
-    - E(k1)(M || T(k2)(M))
+    - **E(k1)(M || T(k2)(M))**
 
 - Existem modos de operação cujo objetivo é produzirem uma cifra autenticada, combinando as operações num só algoritmo
   - **Galois/Counter Mode (GCM)**
   - **Offset Codebook Mode (OCB)**
   - **Counter with CBC-MAC (CCM)**
-  
+

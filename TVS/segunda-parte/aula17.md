@@ -17,7 +17,7 @@ RUN unzip kotlin-compiler-1.9.21.zip -d /opt
 WORKDIR /build/app/src
 COPY src/ ./
 
-RUN /opt/kotlinc/bin/kotlinc Hello.kt -include-runtime -d ../bin/Hello.jar
+RUN /opt/kotlinc/bin/kotlinc Hello.kt -include-runtime -d ../bin/Hello.jar  
 
 WORKDIR /opt/isel/tvs/hello
 RUN cp /build/app/bin/Hello.jar .

@@ -1,4 +1,4 @@
-# Trabalho 1 SegInf 
+# Trabalho 1 SegInf
 
 ## Identificação do grupo
 
@@ -6,7 +6,7 @@
 - Carlos Guilherme Pereira - 48253
 - Tiago Pardal - 47xxx
 
-## Pergunta 1 
+## Pergunta 1
 
 CI(k1, m) = Es(T(k1)(m)1..L)(m) || T(k1)(m)
 
