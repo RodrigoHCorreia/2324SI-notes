@@ -33,12 +33,14 @@ Servidor precisa de: C2 e respetiva chave (KSC2), Int2, CA1.
 ## 6 JCA
 
 Dois motivos para existirem os métodos update e doFinal e não apenas o método update é que:
+
 - Caso haja necessidade de acrescentar padding à mensagem, e isto só pode ser feito se se souber que é o último bloco da mensagem.
 - Finaliza o processo de cifra, e devolve o resultado final
 
 ## 7
 
 Uma aplicação que guarde passwords usando salt diferente por utilizador e uma função de hash, tem vantagens comparando com uma solução que usa cifra simétrica ou assimétrica para guardar as passwords:
+
 - Proteção contra ataques de dicionário e de força bruta, pois o salt faz com que mesmo que dois utilizadores tenham a mesma password, o hash seja diferente. Isto faz com que o atacane não consiga simplesmente pre-computar um dicionário de valores hash conhecidos e compará-los com os hashes das passwords.
 - Mesmo em caso da base de dados ser comprometida, o atacante não consegue obter as passwords dos utilizadores, pelo facto do salt ser único e as funções de hash serem unidirecionais, ao contrário de uma cifra simétrica ou assimétrica, em que o atacante pode simplesmente usar a chave para decifrar as passwords.
 
@@ -49,7 +51,7 @@ A assinatura digital é mais robusto e completo, porém com MAC só temos de ger
 
 ## 9 RBAC
 
-A relação UA é uma associação estática entre utilizadores e roles, sobre quais roles um utilizador tem acesso. porém no na sessão, é que o utilizador efetivamente os ativa. Por exemplo, apesar de um utilizador ter um role muito elevado, o mesmo pode querer ativar um role mais baixo para por exemplo verificar o que um utilizador com esse role tem acesso.
+A relação UA é uma associação estática entre utilizadores e roles, sobre quais roles um utilizador tem acesso. Porém na sessão, é que o utilizador efetivamente os ativa. Por exemplo, apesar de um utilizador ter um role muito elevado, o mesmo pode querer ativar um role mais baixo para por exemplo verificar o que um utilizador com esse role tem acesso.
 
 ## 10 OAuth 2.0 e OpenID C\onnect
 
