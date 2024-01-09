@@ -12,7 +12,7 @@
 ![Spring Initializr](./docs/image.png)
 
 
-## **Maven**:
+## **Maven**
 
 - Gerenciador de dependencias (artefactos)
 - Permite criar um artefacto composto por JAR + metadata
