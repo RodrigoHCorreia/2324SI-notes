@@ -28,7 +28,7 @@ Wants=unitfileThatShouldBeRunning.service
 É possível ainda ter dependências expressas de **forma inversa.**
 Ou seja, se tiver um determinado x que depende de y, quem expressa a dependência pode ser o y e não o x.
 Isto pode ser relevante por exemplo:
-Instalo um determinado software no sistema que tem um servico, e este serviço deve ser arrancado num determinado momento do meu sistema. há um dos targets (targets são os runlevels do systemd) que quando ativado, arranca o serviço.
+**Instalo um determinado software no sistema que tem um servico, e este serviço deve ser arrancado num determinado momento do meu sistema. há um dos targets (targets são os runlevels do systemd) que quando ativado, arranca o serviço.**
 
 **RequiredBy**
 **WantedBy**
