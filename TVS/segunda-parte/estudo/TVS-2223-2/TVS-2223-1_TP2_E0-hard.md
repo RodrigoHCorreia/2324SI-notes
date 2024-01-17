@@ -75,10 +75,10 @@
 > *«Um dos custos incontornáveis do sistema de contentores Docker é o de precisar de uma máquina virtual auxiliar para correr um kernel Linux, que fica em execução em simultâneo com o kernel do host, seja num sistema Windows, Mac ou Linux.»*
 
     ```
-    A afirmação está errada. 
+    A afirmação está incorreta. Num sistema Linux, o sistema de contentores Docker, utiliza o kernel do host, e não necessita de uma máquina virtual auxiliar. Nos outros sistemas operativos, o Docker pode necessitar de uma máquina virtual auxiliar. Nos sistemas Windows mais recentes, existe um suporte nativo para contentores Linux, em que não precisam de uma máquina virtual ou Hyper-V para correr. Nos sistemas Mac, o Docker ainda necessita de uma máquina virtual auxiliar, para correr o kernel Linux.
     ```
 
-1. Considere o **Dockerfile** apresentado ao lado e dois ficheiros, **package.json** e **app.js**, com uma aplicação para **Node.js**
+7. Considere o **Dockerfile** apresentado ao lado e dois ficheiros, **package.json** e **app.js**, com uma aplicação para **Node.js**
 
     ```dockerfile
     FROM ubuntu
@@ -95,6 +95,7 @@
 - Modifique ainda o **Dockerfile** para minimizar o número de reconstruções de camadas quando algum dos ficheiros da aplicação **Node.js** é alterado e reduza o número total de camadas.
 
     ```
+
     ```
 
 8. Uma solução para **docker compose**, composta por múltiplos serviços, utiliza redes distintas para vários grupos de serviços dessa solução. Consequentemente, os vários contentores da solução estarão em execução com definições distintas de rede, possivelmente todas elas diferentes das definições de rede do sistema anfitrião. No entanto, todos os processos desses contentores são também processos do sistema anfitrião. Como podem coexistir no mesmo sistema operativo processos com definições de rede diferentes?

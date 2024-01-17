@@ -42,6 +42,12 @@ Que nome se dá ao tipo de solução de virtualização que está implícito nes
 10. [2.5] Descreva sucintamente 5 a 7 passos que considera relevantes na compreensão do que acontece num sistema Linux desde que se executa o comando **docker run -it ubuntu:latest** até que o respetivo contentor está em execução. NOTA: Existem múltiplas respostas válidas.
 
     ```
+    1. O terminal do linux interpreta o comando e envia o mesmo para o docker daemon.
+    2. O docker vai verificar se a imagem ubuntu:latest existe em cache, e se não existir, vai fazer pull da mesma do docker hub.
+    3. O docker vai criar um container a partir da imagem ubuntu:latest.
+    4. Alocação dos recursos necessários para o container, como memória, cpu, espaço em disco, um sistema de arquivos, etc.
+    5. O docker configura uma rede virtual para o container, que normalmente inclui um endereço IP interno e uma ponte de rede para comunicação com o host e outros containers.
+    6. O docker executa o comando especificado no docker run, neste caso, /bin/bash, devido ao -it que indica que o container deve ser executado em modo interativo.
     ```
 
 11. [2.5] Um ficheiro **docker-compose.yml**, para especificação de uma solução composta com o nome **tp2**, contém, entre outros elementos, a especificação de um serviço com o nome **svc**, associado a uma rede **tp2net** de tipo *bridge*. Ao levantar a solução com up, este serviço poderá ter associado mais do que 1 contentor? <u>Se sim</u>, como? <u>Se não</u>, o que poderia ser feito para que isso fosse possível? <u>Em qualquer caso</u>, que nome ou nomes podem ser usados na rede **tp2net** para chegar a esse(s) contentor(es)?
