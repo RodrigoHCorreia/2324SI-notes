@@ -9,6 +9,7 @@ Resources
 Rembember, mutableState, rememberSaveable, combinação de ambos
 okHttp
 Firebase
+data store  
 
 ## Manifesto
 
@@ -84,10 +85,22 @@ Facilita a adequação da aplicação a diferentes dispositivos, e.g.:
 - enqueue - recebe um callback e quando a resposta chegar, o callback é chamado. assincrono e não bloqueante
 - okHttp ainda não tem suporte para suspending functions.
 
-## http4k
-
-
 ## Firebase
 
 - Tem suporte parcial para suspending functions com o await, que suspende sem bloquear, logo pode ser feito na main thread.
-  
+- tem modelo de publish subscribe, em que se subscreve a um evento e quando o evento acontece, é chamado o callback.
+- document db.
+- 
+
+## Flows
+
+- Flow é uma stream de dados assíncrona que pode emitir valores, erros e completar.
+
+- Para consumir um flow sempre que a activity é lançada usa-se um collect, resetToIdle é necessário para voltar ao estado inicial e caso voltemos para esta activity podermos voltar a usar o flow.
+- Para que a recomposição seja feita caso o valor desse flow mude, usa-se o collectAsState, 
+  - collectAsState é uma função composable, que retorna um State<T> que é uma variável que quando é alterada, força uma recomposição.
+- MutableStateFlow é uma implementação de Flow que mantém guardado o último elemento, em vez de toda a stream passada.
+- Fazemos .asStateFlow() para dar uma interface readOnly do MutableStateFlow, para que não seja possível alterar o valor do flow.
+
+Para adaptar as realidades de suspending function e asincronia com callbacks usa-se uma suspendingCancelableCorrotine.
+Usa-se callbackFlow para criar um flow a partir de um callback.
