@@ -1,30 +1,19 @@
-# A rever
-
-Intent explicito vs implicito
-Flows
-Serviços com conecção à API
-Activity lifecycle
-User task back stack
-Resources
-Rembember, mutableState, rememberSaveable, combinação de ambos
-okHttp
-Firebase
-data store  
+# Estudo PDM
 
 ## Manifesto
 
-Dá indicação no momento da instalação do APK, os requesitos e a carga do mesmo:
+**Dá indicação no momento da instalação do APK, os requesitos e a carga do mesmo:**
 
 Indica:
   
 - Componentes (e.g. Activities)
-- Indicar as permissões necessárias
-- Indicar o nome completo da classe derivada de Application a ser instanciada
+- Permissões necessárias
+- Nome completo da classe derivada de Application a ser instanciada
 - Entre outros.
 
 ## Resources
 
-Facilita a adequação da aplicação a diferentes dispositivos, e.g.:
+**Facilita a adequação da aplicação a diferentes dispositivos, e.g.:**
 
 - drawables (e.g. imagens)
 - layouts (e.g. XML)
@@ -33,7 +22,6 @@ Facilita a adequação da aplicação a diferentes dispositivos, e.g.:
 - anim (e.g. animações)
 
 ## Intent Filters (Explicit vs Implicit)
-
 
 - Para incluir instâncias de tipos definidos pela aplicação como extras de intent, a mesma deve cumprir o contrato Parcelable.
 - Se for um tipo primitivo não é necessário cumprir o contrato.
