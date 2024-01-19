@@ -36,7 +36,8 @@ Multi-stage builds - https://docs.docker.com/develop/develop-images/multistage-b
 | | Processo | Sistema
 | --- | --- | --- |
 | Instruction Set == | Processo de S.O. | Virtual Box, VMware, Parallels (tem um Hypervisor)|
-| Instruction Set != | JVM, .NET, Node.js, qemu-user (Virtual Execution Environment)| Emuladores de Plataforma, quemu-system |  
+| Instruction Set != | JVM, .NET, Node.js | Emuladores de Plataforma, quemu-system |  
+||qemu-user (Virtual Execution Environment)||  
 
 > RUN <<EOF
 > set -e // exit on error

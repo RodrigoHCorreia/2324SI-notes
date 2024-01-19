@@ -50,13 +50,13 @@ Que nome se dá ao tipo de solução de virtualização que está implícito nes
     6. O docker executa o comando especificado no docker run, neste caso, /bin/bash, devido ao -it que indica que o container deve ser executado em modo interativo.
     ```
 
-11. [2.5] Um ficheiro **docker-compose.yml**, para especificação de uma solução composta com o nome **tp2**, contém, entre outros elementos, a especificação de um serviço com o nome **svc**, associado a uma rede **tp2net** de tipo *bridge*. Ao levantar a solução com up, este serviço poderá ter associado mais do que 1 contentor? <u>Se sim</u>, como? <u>Se não</u>, o que poderia ser feito para que isso fosse possível? <u>Em qualquer caso</u>, que nome ou nomes podem ser usados na rede **tp2net** para chegar a esse(s) contentor(es)?
+    7.  [2.5] Um ficheiro **docker-compose.yml**, para especificação de uma solução composta com o nome **tp2**, contém, entre outros elementos, a especificação de um serviço com o nome **svc**, associado a uma rede **tp2net** de tipo *bridge*. Ao levantar a solução com up, este serviço poderá ter associado mais do que 1 contentor? <u>Se sim</u>, como? <u>Se não</u>, o que poderia ser feito para que isso fosse possível? <u>Em qualquer caso</u>, que nome ou nomes podem ser usados na rede **tp2net** para chegar a esse(s) contentor(es)?
 
     ```
     Este serviço poderá estar associado a mais do que um contentor, utilizando --scale, por exemplo, docker-compose up --scale svc=3 irá criar 3 contentores com o nome tp2_svc_1, tp2_svc_2 e tp2_svc_3, e todos eles irão pertencer à rede tp2net. Os nomes que podem ser usados para chegar a esses contentores na rede tp2net são os mesmos, tp2_svc_1, tp2_svc_2 e tp2_svc_3.
     ```
 
-12. [4] Considere o **Dockerfile** apresentado ao lado, os ficheiros **package.json** e **app.js**, com uma aplicação para **Node.js**, o ficheiro **README.md**, e uma pasta **images** com ficheiros de suporte à interface de utilizador da aplicação. Pretende-se que no sistema de ficheiros das instâncias da imagem todos os ficheiros e pastas abaixo de **/home/node/webapp** tenham como dono o utilizador node. Considera-se que há grande probabilidade de alterar o ficheiro **app.js**, o porto da aplicação e os ficheiros da pasta **images**. Pretende-se ainda, prioritariamente, otimizar a reutilização da *cache* de imagens intermédias e, dentro do possível, minimizar o número de camadas de *overlay*.
+11. [4] Considere o **Dockerfile** apresentado ao lado, os ficheiros **package.json** e **app.js**, com uma aplicação para **Node.js**, o ficheiro **README.md**, e uma pasta **images** com ficheiros de suporte à interface de utilizador da aplicação. Pretende-se que no sistema de ficheiros das instâncias da imagem todos os ficheiros e pastas abaixo de **/home/node/webapp** tenham como dono o utilizador node. Considera-se que há grande probabilidade de alterar o ficheiro **app.js**, o porto da aplicação e os ficheiros da pasta **images**. Pretende-se ainda, prioritariamente, otimizar a reutilização da *cache* de imagens intermédias e, dentro do possível, minimizar o número de camadas de *overlay*.
 
     ```dockerfile
     FROM node:alpine

@@ -97,3 +97,58 @@ ex nginx and tvvsapp share a network but all inside is a different one.
 for docker the dns server is ALWAYS 127.0.0.11
 
 nslookup demoapp 127.0.0.11
+
+```yml
+version: '3.8'
+services:
+  # entry service
+  entry:
+    depends_on:
+      - webapp
+    networks:
+      - abc
+    # uses an nginx:alpine image
+    image: nginx:alpine
+    # The solution will use a single port in the host system for all incoming requests: 2023
+    ports:
+      - "2023:80"
+    # with a modified configuration file
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+
+  # webapp service
+  webapp:
+  # is built directly from the Dockerfile developed in exercise 1.
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - abc
+      - dce
+    environment:
+      - NODE_PORT=4001
+      - ELASTIC_URL=http://database:9200 # easter egg
+
+  # database service
+  database:
+    # is an elasticsearch:8.11.1
+    image: elastic/elasticsearch:8.11.1
+    networks:
+      - dce
+    # with the these environment variables defined
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+# Use a volume to ensure that elasticsearch persistent data is not lost between executions. The
+# relevant directory is /usr/share/elasticsearch/data
+volumes:
+  esdata:
+
+# Ensure that entry can access webapp and webapp can access datastore, but entry cannot access datastore
+networks:
+  abc:
+  dce:
+```

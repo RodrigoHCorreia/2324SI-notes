@@ -68,7 +68,7 @@
 5. Os processadores **ARM v8** de 64 *bits* (por vezes designados por *aarch64*) suportam um modo de tradução de endereços com duas fases, em que um *endereço virtual* é primeiro traduzido para um *endereço intermédio* e a seguir passa por uma segunda tradução para se obter o *endereço físico* final. Qual é o propósito deste esquema de tradução com duas fases?
 
     ```
-    O propósito de realizar um esquema de tradução com duas fazes, é que permite ao hypervisor controlar que memória em uma VM pode aceder, e onde é que esses recursos aparecem no espaço de endereçamento da mesma. Com este esquema de tradução com duas fases podemos garantir que uma uma VM só pode ver os recursos que lhe são alocados, e não os recursos que são alocados a outras VMs, isto é importante para garantir isolamento da VM, 
+    O propósito de realizar um esquema de tradução com duas fazes, é que permite ao hypervisor controlar que memória em uma VM pode aceder, e onde é que esses recursos aparecem no espaço de endereçamento da mesma. Com este esquema de tradução com duas fases podemos garantir que uma uma VM só pode ver os recursos que lhe são alocados, e não os recursos que são alocados a outras VMs, isto é importante para garantir isolamento da VM.
     ```
 
 6. Comente a seguinte afirmação:

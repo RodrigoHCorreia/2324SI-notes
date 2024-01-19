@@ -99,5 +99,9 @@
 12.  [2.5] Um ficheiro **docker-compose.yml**, para especificação de uma solução composta com o nome **tp2**, contém três serviços: **svca**, **svcb** e **svcc**, todos colocados na mesma rede, **svcnet**, de tipo **bridge**. Os serviços **svca** e **svcc** têm apenas uma instância cada um, mas o serviço **svcb** foi lançado com **scale=4**. Executando um *shell* (/bin/sh) no contentor do serviço **svca**, qual é a diferença observável entre executar **nslookup svcb ou nslookup tp2-svcb-1** ?
     
         ```
+        nslookup svcb vai devolver o ip de todos os contentores do serviço svcb,, enquanto que nslookup tp2-svcb-1 vai devolver apenas o ip do contentor tp2-svcb-1.
         ```
+        ```
+        
+        ping usa passos adicionais para resolver o nome do domínio em um endereço IP, enquanto que o nslookup é usado para consultar diretamente o servidor DNS e obter os endereços IP correspondentes aos nomes de domínio.
         
