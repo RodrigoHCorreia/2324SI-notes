@@ -9,7 +9,7 @@
         4. Um pedido *safe* e idempotente.
 
         ```
-        
+
         ```
 
     2. Uma mensagem de resposta **HTTP** com status code igual a **200** e *Content-Type* igual a **application/problem+json** deve ser interpretada por um intermediário como sendo:
@@ -85,12 +85,90 @@
 
 4. (4) Realize um ou mais componentes para uso com a biblioteca **Spring MVC** de forma a que para cada pedido **HTTP** seja emitida uma mensagem de *log* com: método **HTTP**; **URI** do recurso acedido; *status code* da resposta; tempo de processamento; identificador do *handler* que processou o pedido, caso o *handler* seja do tipo **HandlerMethod**. Valorizam-se soluções onde o cálculo do tempo de processamento tem em conta mais etapas desse processamento. Use o método **getShortLogMessage** para obter o identificador de um **HandlerMethod**.
 
-    ```
+    ```kotlin
+    @Component
+    @Order(Ordered.LOWEST_PRECEDENCE)
+    public class LoggingFilter extends HttpFilter {
+
+        @Override
+        fun doFilter(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
+            request.setAttribute("initialTime", System.currentTimeMillis())
+            chain.doFilter(request, response);
+        }
+    }
+
+    @Component
+    class LoggingInterceptor: HandlerInterceptor {
+
+        companion object {
+            private val logger = LoggerFactory.getLogger(LoggingInterceptor::class.java)
+        }
+
+        override fun afterCompletion(
+            request: HttpServletRequest,
+            response: HttpServletResponse,
+            handler: Any,
+            ex: Exception?
+        ) {
+            val method = request.method
+            val uri = request.requestURI
+            val code = response.status
+            val handlerId = if (handler !is HandlerMethod) null else handler
+            val initialTime = request.getAttribute("initialTime") as Long
+            val finalTime = System.currentTimeMillis() - initialTime
+            logger.info("method - $method \n
+            uri - $uri \n code - $code,
+            handler identifier - $handlerId, total time - $finalTime")
+        }
+    }
     ```
 
 5. (4) Realize um componente para a biblioteca **React** que recebe a propriedade **f** do tipo **() => Promise\<string>** e que apresenta o *fulfillment value* ou a *rejection reason* da *promise* resultante da avaliação de **f**. Enquanto esta *promise* estiver pendente, deve ser apresentado um contador incrementado a cada 100 milissegundos. O componente deve ser sensível a mudanças na propriedade **f**.
 
-    ```
+    ```ts
+    function PromiseWatcher((f): {f: () => Promise<string>}) {
+    const [waiting, setWaiting] = useState(false)
+    const [content, setContent] = useState("")
+    const [observedCounter, setCounter] = useState(0)
+
+    const awaitPromise = async () => {
+        setWaiting(true)
+        try {
+            const text = await f()
+            setContent(text)
+        } catch (e) {
+            setContent(e.message)
+        } finally {
+            setWaiting(false)
+        }
+    }
+
+    useEffect(() => {
+        awaitPromise()
+        return () => {}
+    }, [f])
+
+    useEffect(() => {
+        let tId;
+        if (waiting) {
+            tId = setInterval(() => {
+                setCounter((prev) => prev + 1);
+            }, 100);
+        }
+        return () => {
+            if (tId) {
+                clearInterval(tId);
+            }
+        };
+    }, [waiting]);
+
+    return (
+        <div>
+            {observedCounter}
+            <textarea value={content}></textarea>
+        </div>
+    )
+    }
     ```
 
 6. (2) Realize a função
@@ -106,6 +184,15 @@
         return (<input type="text" value={value} onChange={handler} />);
     }
     ```
-    ```
 
+    ```ts
+    function useInput(initial) {
+        const [currentValue, setCurrentValue] = useState(initial);
+
+        const changeHandler = (event) => {
+            setCurrentValue(event.target.value);
+        };
+
+        return [currentValue, changeHandler];
+    }
     ```

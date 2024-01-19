@@ -1,6 +1,6 @@
 # Load balancers, services, ctl, demons, shell script etc.
 
-## Work diagram 
+## Work diagram
 
 ![work-diagram-phase-3](<WhatsApp Image 2023-11-09 at 10.09.07_689a539b.jpg>)
 
